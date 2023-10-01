@@ -14,8 +14,6 @@ function App() {
           {/* public routes */}
           <Route path="/" element={<Home />} />
 
-          {/* private routes */}
-
           {/* 404 */}
           <Route path="*" element={<NotFound />} />
         </Route>

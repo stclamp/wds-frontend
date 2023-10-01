@@ -1,0 +1,76 @@
+@import '@/assets/utils/_variables.scss';
+@import '@/assets/utils/_mixins.scss';
+
+.card-wrapper {
+  display: flex;
+  max-height: 870px;
+}
+
+.card-image {
+  width: 65%;
+  min-height: 100%;
+  img {
+    object-fit: cover;
+    height: 100%;
+  }
+}
+
+.card-content {
+  width: 35%;
+  background-color: $color-cards-bg;
+  padding: 32px 24px;
+}
+
+.card-content-short {
+  width: 35%;
+}
+
+.card-category {
+  color: $color-accent;
+  font-size: $fs-14;
+  font-weight: $fw-700;
+}
+
+.card-title {
+  margin-top: 8px;
+  font-size: $fs-22;
+  font-weight: $fw-500;
+  line-height: 40px;
+}
+
+.card-text {
+  margin-top: 8px;
+  font-size: $fs-14;
+  font-weight: $fw-400;
+  line-height: 28px;
+}
+
+.card-info {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.card-date,
+.card-author,
+.card-time {
+  color: $color-small-secondary-text;
+  font-size: $fs-12;
+  font-weight: $fw-400;
+  &:not(.card-time, .card-author) {
+    margin-right: 9px;
+  }
+}
+
+.card-author {
+  color: $color-accent;
+  margin-right: 33px;
+}
+
+.card-read-time {
+  @include flex-center;
+
+  svg {
+    margin-right: 4px;
+  }
+}

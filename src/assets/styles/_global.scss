@@ -5,6 +5,7 @@
 *::before,
 *::after {
   font-family: $ff-poppins;
+  color: $color-dark;
 }
 
 .container {
@@ -13,7 +14,8 @@
   padding: 0 10px;
 }
 
-.not-found {
+.not-found,
+.spinner-wrapper {
   @include flex-center;
   margin-top: 100px;
 }

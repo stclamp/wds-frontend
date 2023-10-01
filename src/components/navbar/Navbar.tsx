@@ -10,7 +10,14 @@ const Navbar = () => (
       {navItems.map((menu) =>
         !menu.submenu ? (
           <li className={styles['menu-item']} key={menu.id}>
-            <NavLink to={menu.url}>{menu.title}</NavLink>
+            <NavLink
+              to={menu.url}
+              className={({ isActive }) =>
+                isActive ? styles['active-link'] : ''
+              }
+            >
+              {menu.title}
+            </NavLink>
           </li>
         ) : (
           <li className={styles['menu-item']} key={menu.id}>
