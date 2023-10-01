@@ -5,7 +5,7 @@ export interface INavItem {
   submenu?: INavItem[];
 }
 
-export interface ICard {
+export interface IPost {
   id: number;
   title: string;
   text: string;

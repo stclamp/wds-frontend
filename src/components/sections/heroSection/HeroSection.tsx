@@ -1,29 +1,26 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import PostCard from '@/components/postCard/PostCard';
-import Spinner from '@/components/spinner/Spinner';
-import { ICard } from '@/types';
+import LastPosts from '@/components/sections/lastPosts/LastPosts';
+import BASE_URL from '@/utils/baseURL';
+import { IPost } from '@/types';
 
-const BASE_URL = import.meta.env.VITE_BACKEND_LINK;
+import styles from './HeroSection.module.scss';
 
 const HeroSection = () => {
-  const [randomCard, setRandomCard] = useState<ICard | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [randomCard, setRandomCard] = useState<IPost | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
     axios.get(`${BASE_URL}/posts/random`).then(({ data }) => {
       setRandomCard(data.data);
-      setIsLoading(false);
     });
   }, []);
 
-  return isLoading ? (
-    <div className="spinner-wrapper">
-      <Spinner />
+  return (
+    <div className={styles['hero-wrapper']}>
+      <PostCard isShort card={randomCard} />
+      <LastPosts />
     </div>
-  ) : (
-    <PostCard isShort card={randomCard} />
   );
 };
 
