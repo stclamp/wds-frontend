@@ -1,0 +1,25 @@
+@import '@/assets/utils/_variables.scss';
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.tel {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+
+  span {
+    color: $color-small-secondary-text;
+    font-size: $fs-12;
+    font-weight: $fw-400;
+    margin-bottom: 8px;
+  }
+
+  a {
+    color: $color-dark;
+    font-size: $fs-22;
+    font-weight: $fw-400;
+  }
+}

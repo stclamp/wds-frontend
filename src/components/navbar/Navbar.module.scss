@@ -1,0 +1,37 @@
+@import '@/assets/utils/_variables.scss';
+@import '@/assets/utils/_mixins.scss';
+
+.menu {
+  @include flex-center;
+}
+
+.menu-item {
+  color: $color-dark;
+  font-size: $fs-14;
+  font-weight: $fw-500;
+  cursor: pointer;
+  position: relative;
+
+  @include hover(color, $color-accent);
+
+  &:not(:last-child) {
+    margin-right: 24px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: $color-accent;
+    transition: width $transition-time;
+  }
+
+  &:hover {
+    &:after {
+      width: 100%;
+    }
+  }
+}
