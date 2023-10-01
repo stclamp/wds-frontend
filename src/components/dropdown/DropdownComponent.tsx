@@ -1,7 +1,8 @@
+import { NavLink } from 'react-router-dom';
 import Dropdown from 'react-multilevel-dropdown';
-import ArrowRightIcon from '@/components/Icons/ArrowRightIcon';
-import ArrowDownIcon from '@/components/Icons/ArrowDownIcon';
-import ArrowUpIcon from '@/components/Icons/ArrowUpIcon';
+import ArrowRightIcon from '@/components/icons/ArrowRightIcon';
+import ArrowDownIcon from '@/components/icons/ArrowDownIcon';
+import ArrowUpIcon from '@/components/icons/ArrowUpIcon';
 import { INavItem } from '@/types';
 
 import styles from './Dropdown.module.scss';
@@ -33,7 +34,7 @@ const DropdownComponent: React.FC<DropdownProps> = ({ menu }) => (
     {menu.submenu &&
       menu.submenu.map((item) => (
         <Dropdown.Item key={item.id} className={styles['dropdown-item']}>
-          {item.title}
+          <NavLink to={item.url}>{item.title}</NavLink>
           {item.submenu && <ArrowRightIcon />}
           {item.submenu && (
             <Dropdown.Submenu
@@ -46,7 +47,7 @@ const DropdownComponent: React.FC<DropdownProps> = ({ menu }) => (
                     key={sub.id}
                     className={styles['dropdown-item']}
                   >
-                    {sub.title}
+                    <NavLink to={sub.url}>{sub.title}</NavLink>
                   </Dropdown.Item>
                 ))}
             </Dropdown.Submenu>

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import DropdownComponent from '@/components/dropdown/DropdownComponent';
 import navItems from '@/utils/navItems';
 
@@ -9,7 +10,7 @@ const Navbar = () => (
       {navItems.map((menu) =>
         !menu.submenu ? (
           <li className={styles['menu-item']} key={menu.id}>
-            {menu.title}
+            <NavLink to={menu.url}>{menu.title}</NavLink>
           </li>
         ) : (
           <li className={styles['menu-item']} key={menu.id}>

@@ -1,7 +1,7 @@
 import '@/assets/styles/_global.scss';
 
 interface ContainerProps {
-  children: React.ReactElement;
+  children: React.ReactElement | React.ReactElement[];
 }
 
 const Container: React.FC<ContainerProps> = ({ children }) => (

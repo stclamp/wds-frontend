@@ -13,36 +13,7 @@
   padding: 0 10px;
 }
 
-.menu-items {
-  color: $color-dark;
-  font-size: $fs-14;
-  font-weight: $fw-500;
-  position: relative;
-  background: none;
-  border: none;
-
-  &:not(.submenu) {
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -33px;
-      left: 0;
-      width: 0;
-      height: 3px;
-      background-color: $color-accent;
-      transition: width $transition-time;
-    }
-  }
-
-  @include hover(color, $color-accent);
-
-  &:not(:last-child, .submenu) {
-    margin-right: 24px;
-  }
-
-  &:hover {
-    &:after {
-      width: 100%;
-    }
-  }
+.not-found {
+  @include flex-center;
+  margin-top: 100px;
 }
