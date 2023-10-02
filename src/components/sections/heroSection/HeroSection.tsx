@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import PostCard from '@/components/postCard/PostCard';
 import LastPosts from '@/components/sections/lastPosts/LastPosts';
 import BASE_URL from '@/utils/baseURL';
@@ -11,9 +12,12 @@ const HeroSection = () => {
   const [randomCard, setRandomCard] = useState<IPost | null>(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/posts/random`).then(({ data }) => {
-      setRandomCard(data.data);
-    });
+    axios
+      .get(`${BASE_URL}/posts/random`)
+      .then(({ data }) => {
+        setRandomCard(data.data);
+      })
+      .catch((error) => toast.error(error.message));
   }, []);
 
   return (

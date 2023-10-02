@@ -76,3 +76,12 @@ main {
 .title {
   text-align: center;
 }
+
+.react-tabs__tab-list,
+.react-tabs__tab--selected {
+  border-color: $color-accent !important;
+}
+
+.react-tabs__tab-list {
+  width: 100%;
+}

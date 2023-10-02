@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import HeroSection from '@/components/sections/heroSection/HeroSection';
 import RandomPost from '@/components/sections/randomPost/RandomPost';
 import Container from '@/components/container/Container';
@@ -16,10 +17,13 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`${BASE_URL}/posts/random`).then(({ data }) => {
-      setRandomCard(data.data);
-      setIsLoading(false);
-    });
+    axios
+      .get(`${BASE_URL}/posts/random`)
+      .then(({ data }) => {
+        setRandomCard(data.data);
+        setIsLoading(false);
+      })
+      .catch((error) => toast.error(error.message));
   }, []);
   return (
     <main>

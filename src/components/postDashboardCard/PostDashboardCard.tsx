@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import cls from 'classnames';
+import Spinner from '@/components/spinner/Spinner';
 import { IPost } from '@/types';
 
 import styles from './PostDashboardCard.module.scss';
+import '@/assets/styles/_global.scss';
 
 interface PostDashboardCardProps {
   post?: IPost;
@@ -13,12 +15,14 @@ interface PostDashboardCardProps {
     setIsEdit: (arg: boolean) => void,
   ) => void;
   handleDelete: (id: number) => void;
+  isLoading: boolean;
 }
 
 const PostDashboardCard: React.FC<PostDashboardCardProps> = ({
   post,
   updatePost,
   handleDelete,
+  isLoading,
 }) => {
   const [isEdit, setIsEdit] = useState(false);
   const handleStartEdit = () => {
@@ -42,45 +46,54 @@ const PostDashboardCard: React.FC<PostDashboardCardProps> = ({
   return (
     <div className={styles.card}>
       {isEdit ? (
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-          <input
-            className={styles.input}
-            type="text"
-            {...register('title', { required: true })}
-          />
-          <textarea
-            className={styles.input}
-            {...register('text', { required: true })}
-          />
-          <input
-            className={styles.input}
-            type="text"
-            {...register('author', { required: true })}
-          />
-          <input
-            className={styles.input}
-            type="text"
-            {...register('category', { required: true })}
-          />
-          <input
-            className={styles.input}
-            type="text"
-            {...register('image', { required: true })}
-          />
-          <input
-            className={styles.input}
-            type="text"
-            {...register('image_alt', { required: true })}
-          />
-          <input
-            className={styles.input}
-            type="text"
-            {...register('read_time', { required: true })}
-          />
-          <button type="submit" className={styles.button}>
-            Save
-          </button>
-        </form>
+        <>
+          {isLoading && (
+            <div className="spinner-wrapper">
+              <Spinner />
+            </div>
+          )}
+          {!isLoading && (
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+              <input
+                className={styles.input}
+                type="text"
+                {...register('title', { required: true })}
+              />
+              <textarea
+                className={styles.input}
+                {...register('text', { required: true })}
+              />
+              <input
+                className={styles.input}
+                type="text"
+                {...register('author', { required: true })}
+              />
+              <input
+                className={styles.input}
+                type="text"
+                {...register('category', { required: true })}
+              />
+              <input
+                className={styles.input}
+                type="text"
+                {...register('image', { required: true })}
+              />
+              <input
+                className={styles.input}
+                type="text"
+                {...register('image_alt', { required: true })}
+              />
+              <input
+                className={styles.input}
+                type="text"
+                {...register('read_time', { required: true })}
+              />
+              <button type="submit" className={styles.button}>
+                Save
+              </button>
+            </form>
+          )}
+        </>
       ) : (
         <>
           <h3>

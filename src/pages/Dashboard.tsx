@@ -1,5 +1,5 @@
 import Container from '@/components/container/Container';
-import CustomTabs from '@/customTabs/CustomTabs';
+import CustomTabs from '@/components/customTabs/CustomTabs';
 
 const Dashboard = () => (
   <main>

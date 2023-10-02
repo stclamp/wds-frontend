@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import cls from 'classnames';
+import toast from 'react-hot-toast';
 import Spinner from '@/components/spinner/Spinner';
 import BASE_URL from '@/utils/baseURL';
 
@@ -30,11 +31,12 @@ const Form = () => {
         { ...data, role: 'admin' },
         { withCredentials: true },
       )
-      .then(() => {
+      .then(({ data: dataRes }) => {
         setIsLoading(false);
         navigate('/admin/dashboard');
+        toast.success(dataRes.message);
       })
-      .catch((error) => console.log(error))
+      .catch((error) => toast.error(error.message))
       .finally(() => setIsLoading(false));
   };
   return isLoading ? (

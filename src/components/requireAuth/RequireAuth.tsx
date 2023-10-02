@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, Navigate, Outlet } from 'react-router';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import Spinner from '@/components/spinner/Spinner';
 import BASE_URL from '@/utils/baseURL';
 
@@ -19,7 +20,10 @@ const RequireAuth = () => {
         setIsAuth(true);
         setIsLoading(false);
       })
-      .catch(() => setIsAuth(false))
+      .catch((error) => {
+        setIsAuth(false);
+        toast.error(error);
+      })
       .finally(() => setIsLoading(false));
   }, []);
 

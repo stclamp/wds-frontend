@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router';
 import Pagination from 'rc-pagination';
+import toast from 'react-hot-toast';
 import PostPreview from '@/components/postPreview/PostPreview';
 import ArrowRightIcon from '@/components/icons/ArrowRightIcon';
 import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon';
@@ -39,7 +40,8 @@ const AllPosts = () => {
         setAllPosts(data.data.rows);
         setPostsCount(data.data.count);
         setIsLoading(false);
-      });
+      })
+      .catch((error) => toast.error(error.message));
   };
 
   useEffect(() => {

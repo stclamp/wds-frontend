@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Header from '@/components/header/Header';
 import Layout from '@/pages/Layout';
 import NotFound from '@/pages/NotFound';
@@ -28,6 +29,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+
+      <Toaster />
 
       <Footer />
     </>

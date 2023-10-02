@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import PostDashboardCard from '@/components/postDashboardCard/PostDashboardCard';
 import AddPost from '@/components/addPost/AddPost';
 import { IPost } from '@/types';
@@ -7,9 +8,18 @@ import BASE_URL from '@/utils/baseURL';
 
 const PostsDashboardContent = () => {
   const [posts, setPosts] = useState<IPost[] | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchAllPosts = () => {
-    axios.get(`${BASE_URL}/posts/all`).then(({ data }) => setPosts(data.data));
+    setIsLoading(true);
+    axios
+      .get(`${BASE_URL}/posts/all`)
+      .then(({ data }) => {
+        setIsLoading(false);
+        setPosts(data.data);
+      })
+      .catch((error) => toast.error(error.message))
+      .finally(() => setIsLoading(false));
   };
 
   const updatePost = (
@@ -19,9 +29,16 @@ const PostsDashboardContent = () => {
   ) => {
     axios
       .put(`${BASE_URL}/posts/${post?.id}`, data, { withCredentials: true })
-      .then(() => fetchAllPosts())
-      .catch((error) => console.log(error))
-      .finally(() => setIsEdit(false));
+      .then(({ data: dataRes }) => {
+        setIsLoading(false);
+        fetchAllPosts();
+        toast.success(dataRes.message);
+      })
+      .catch((error) => toast.error(error.message))
+      .finally(() => {
+        setIsLoading(false);
+        setIsEdit(false);
+      });
   };
 
   const handleDeletePost = (id: number) => {
@@ -29,16 +46,29 @@ const PostsDashboardContent = () => {
     isAgree &&
       axios
         .delete(`${BASE_URL}/posts/${id}`, { withCredentials: true })
-        .then(() => fetchAllPosts())
-        .catch((error) => console.log(error));
+        .then(({ data }) => {
+          setIsLoading(false);
+          fetchAllPosts();
+          toast.success(data.message);
+        })
+        .catch((error) => toast.error(error.message))
+        .finally(() => {
+          setIsLoading(false);
+        });
   };
 
   const createPost = (data: IPost, setIsFormOpen: (arg: boolean) => void) => {
     axios
       .post(`${BASE_URL}/posts`, data, { withCredentials: true })
-      .then(() => {
+      .then(({ data: dataRes }) => {
         fetchAllPosts();
         setIsFormOpen(false);
+        setIsLoading(false);
+        toast.success(dataRes.message);
+      })
+      .catch((error) => toast.error(error.message))
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -48,11 +78,12 @@ const PostsDashboardContent = () => {
 
   return (
     <div className="content-wrapper">
-      <AddPost createPost={createPost} />
+      <AddPost createPost={createPost} isLoading={isLoading} />
       {posts &&
         posts.map((post) => (
           <PostDashboardCard
             key={post.id}
+            isLoading={isLoading}
             post={post}
             updatePost={updatePost}
             handleDelete={handleDeletePost}
