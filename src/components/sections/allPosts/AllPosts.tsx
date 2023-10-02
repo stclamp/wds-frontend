@@ -24,9 +24,10 @@ const AllPosts = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const pageLimit = isMobile ? '3' : '6';
-  const currentPage = searchParams.get('page');
+  const pageLimit = isMobile ? '3' : '6'; // page limit for pagination
+  const currentPage = searchParams.get('page'); // get current page from query string
 
+  // isShown navigate buttons
   const isNextButtonShown =
     currentPage && +currentPage < (postsCount ?? 1) / +pageLimit;
 
@@ -34,6 +35,7 @@ const AllPosts = () => {
 
   const fetchPosts = (limit: string, page: string) => {
     setIsLoading(true);
+
     axios
       .get(`${BASE_URL}/posts?limit=${limit}&page=${+page - 1}`)
       .then(({ data }) => {
@@ -45,8 +47,8 @@ const AllPosts = () => {
   };
 
   useEffect(() => {
-    fetchPosts(pageLimit, '1');
-    navigate(`${location.pathname}?page=1&limit=${pageLimit}`);
+    fetchPosts(pageLimit, currentPage || '1');
+    navigate(`${location.pathname}?page=${currentPage}&limit=${pageLimit}`);
   }, []);
 
   const handlePageChange = (e: number) => {
@@ -54,9 +56,11 @@ const AllPosts = () => {
       page: e.toString(),
       limit: pageLimit,
     });
+
     navigate({ pathname: location.pathname, search: params.toString() });
     fetchPosts(pageLimit, e.toString());
   };
+
   return (
     <section className={styles['all-posts']}>
       {isLoading ? (
@@ -79,6 +83,7 @@ const AllPosts = () => {
           onChange={handlePageChange}
           jumpNextIcon={<div className="pagination-jump">...</div>}
           jumpPrevIcon={<div className="pagination-jump">...</div>}
+          showLessItems={isMobile}
           prevIcon={
             isPrevButtonShown && (
               <button className={styles['prev-button']} type="button">

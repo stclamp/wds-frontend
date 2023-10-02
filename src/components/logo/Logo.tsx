@@ -13,6 +13,7 @@ const Logo: React.FC<LogoProps> = ({ isDark = false }) => {
   return (
     <div className={styles['logo-wrapper']}>
       <NavLink className={styles.link} to={`/?page=1&limit=${pageLimit}`}>
+        {/* differnt logo for header and footer */}
         {isDark ? <LogoDarkIcon /> : <LogoIcon />}
       </NavLink>
       {!isDark && !isMobile && (

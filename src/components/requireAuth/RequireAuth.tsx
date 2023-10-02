@@ -14,6 +14,7 @@ const RequireAuth = () => {
   useEffect(() => {
     setIsLoading(true);
     setIsAuth(false);
+
     axios
       .get(`${BASE_URL}/me`, { withCredentials: true })
       .then(() => {
@@ -29,6 +30,7 @@ const RequireAuth = () => {
 
   const location = useLocation();
 
+  // if logged in successful => go dashboard, else => go login page
   const protectedRoute = useMemo(
     () =>
       isAuth ? (

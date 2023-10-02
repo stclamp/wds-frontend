@@ -25,6 +25,7 @@ const PostDashboardCard: React.FC<PostDashboardCardProps> = ({
   isLoading,
 }) => {
   const [isEdit, setIsEdit] = useState(false);
+
   const handleStartEdit = () => {
     setIsEdit(true);
   };
@@ -40,9 +41,12 @@ const PostDashboardCard: React.FC<PostDashboardCardProps> = ({
       read_time: post?.read_time,
     },
   });
+
+  // save updated post
   const onSubmit: SubmitHandler<IPost> = (data) => {
     updatePost(post!, data, setIsEdit);
   };
+
   return (
     <div className={styles.card}>
       {isEdit ? (
@@ -53,6 +57,7 @@ const PostDashboardCard: React.FC<PostDashboardCardProps> = ({
             </div>
           )}
           {!isLoading && (
+            // edit post form
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
               <input
                 className={styles.input}

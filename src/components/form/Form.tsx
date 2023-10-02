@@ -14,8 +14,10 @@ interface Inputs {
   password: string;
 }
 
+// Login form for /admin/login
 const Form = () => {
   const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const {
@@ -23,8 +25,10 @@ const Form = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     setIsLoading(true);
+
     axios
       .post(
         `${BASE_URL}/login`,
@@ -39,6 +43,7 @@ const Form = () => {
       .catch((error) => toast.error(error.message))
       .finally(() => setIsLoading(false));
   };
+
   return isLoading ? (
     <div className="spinner-wrapper">
       <Spinner />

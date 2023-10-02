@@ -18,6 +18,7 @@ const FooterColumn: React.FC<FooterColumnProps> = ({
   links,
   isAddress = false,
 }) => {
+  // Set icon depends on icon in links
   const getIcon = useCallback((icon: string) => {
     switch (icon) {
       case 'geo':

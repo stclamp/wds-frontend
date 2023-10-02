@@ -20,6 +20,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    // hide mobile menu after click outside
     const handleOutsideClick = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsMobileMenuOpen(false);
@@ -29,13 +30,14 @@ const Navbar = () => {
     document.addEventListener('mousedown', handleOutsideClick);
 
     return () => {
+      // remove listener after unmount component
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, []);
 
   return (
     <nav>
-      {(isTablet || isMobile) && (
+      {(isTablet || isMobile) && ( // burger menu shown on mobile and tablet
         <button
           className={styles.burger}
           type="button"

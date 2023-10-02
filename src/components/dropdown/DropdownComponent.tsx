@@ -12,6 +12,8 @@ interface DropdownProps {
   menu: INavItem;
 }
 
+// Dropdown used library. If menu item has submenu it will be converted to dropdown
+
 const DropdownComponent: React.FC<DropdownProps> = ({ menu }) => (
   <Dropdown
     key={menu.id}

@@ -11,6 +11,7 @@ import '@/assets/styles/_global.scss';
 
 const CustomTabs = () => {
   const navigate = useNavigate();
+
   const handleLogout = () => {
     axios
       .post(`${BASE_URL}/logout`, {}, { withCredentials: true })
@@ -36,7 +37,7 @@ const CustomTabs = () => {
         <PostsDashboardContent />
       </TabPanel>
       <TabPanel>
-        <h2>User list</h2>
+        <h2>User list coming soon</h2>
       </TabPanel>
     </Tabs>
   );

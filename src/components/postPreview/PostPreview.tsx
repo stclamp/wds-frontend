@@ -13,7 +13,9 @@ const PostPreview: React.FC<PostPreviewProps> = ({ post }) => (
     <Link to="/" className={styles.category}>
       {post?.category}
     </Link>
-    <h3 className={styles.title}>{post?.title}</h3>
+    <h3 className={styles.title}>
+      <Link to="/">{post?.title}</Link>
+    </h3>
     <CardInfo
       createdAt={post?.createdAt}
       author={post?.author}

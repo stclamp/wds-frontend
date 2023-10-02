@@ -12,6 +12,7 @@ const PostsDashboardContent = () => {
 
   const fetchAllPosts = () => {
     setIsLoading(true);
+
     axios
       .get(`${BASE_URL}/posts/all`)
       .then(({ data }) => {
@@ -27,6 +28,8 @@ const PostsDashboardContent = () => {
     data: IPost,
     setIsEdit: (arg: boolean) => void,
   ) => {
+    setIsLoading(true);
+
     axios
       .put(`${BASE_URL}/posts/${post?.id}`, data, { withCredentials: true })
       .then(({ data: dataRes }) => {
@@ -43,6 +46,9 @@ const PostsDashboardContent = () => {
 
   const handleDeletePost = (id: number) => {
     const isAgree = confirm('Are you shure?');
+
+    setIsLoading(true);
+
     isAgree &&
       axios
         .delete(`${BASE_URL}/posts/${id}`, { withCredentials: true })
@@ -58,6 +64,8 @@ const PostsDashboardContent = () => {
   };
 
   const createPost = (data: IPost, setIsFormOpen: (arg: boolean) => void) => {
+    setIsLoading(true);
+
     axios
       .post(`${BASE_URL}/posts`, data, { withCredentials: true })
       .then(({ data: dataRes }) => {
