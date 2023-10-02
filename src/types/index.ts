@@ -1,7 +1,7 @@
 export interface INavItem {
   id: number;
   title: string;
-  url: string;
+  url?: string;
   submenu?: INavItem[];
 }
 
@@ -15,4 +15,10 @@ export interface IPost {
   image_alt: string;
   read_time: number;
   createdAt: string;
+}
+
+export interface IFooterLink {
+  title: string;
+  url: string;
+  icon?: string;
 }

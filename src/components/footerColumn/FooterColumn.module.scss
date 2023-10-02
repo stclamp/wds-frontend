@@ -1,0 +1,28 @@
+@import '@/assets/utils/_variables.scss';
+
+.title {
+  color: $color-main-bg;
+  font-size: $fs-22;
+  font-weight: $fw-500;
+}
+
+.footer-column-list {
+  margin-top: 24px;
+}
+
+.footer-column-item {
+  max-width: 240px;
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+}
+
+.link {
+  color: $color-main-bg;
+  font-size: $fs-14;
+  font-weight: $fw-400;
+
+  svg {
+    margin-right: 8px;
+  }
+}

@@ -7,7 +7,6 @@ const navItems = [
   {
     id: 2,
     title: 'Services',
-    url: '/services',
     submenu: [
       {
         id: 3,
@@ -17,7 +16,6 @@ const navItems = [
       {
         id: 4,
         title: 'Sub-Menu 2',
-        url: 'submenu2',
         submenu: [
           {
             id: 5,
@@ -61,7 +59,6 @@ const navItems = [
       {
         id: 16,
         title: 'Sub-Menu 2',
-        url: 'submenu2',
         submenu: [
           {
             id: 17,
@@ -90,12 +87,10 @@ const navItems = [
   {
     id: 12,
     title: 'Shop',
-    url: '/shop',
     submenu: [
       {
         id: 20,
         title: 'Sub-Menu 2',
-        url: 'submenu2',
         submenu: [
           {
             id: 21,

@@ -34,7 +34,7 @@ const DropdownComponent: React.FC<DropdownProps> = ({ menu }) => (
     {menu.submenu &&
       menu.submenu.map((item) => (
         <Dropdown.Item key={item.id} className={styles['dropdown-item']}>
-          <NavLink to={item.url}>{item.title}</NavLink>
+          <NavLink to={item.url as string}>{item.title}</NavLink>
           {item.submenu && <ArrowRightIcon />}
           {item.submenu && (
             <Dropdown.Submenu
@@ -47,7 +47,7 @@ const DropdownComponent: React.FC<DropdownProps> = ({ menu }) => (
                     key={sub.id}
                     className={styles['dropdown-item']}
                   >
-                    <NavLink to={sub.url}>{sub.title}</NavLink>
+                    <NavLink to={sub.url as string}>{sub.title}</NavLink>
                   </Dropdown.Item>
                 ))}
             </Dropdown.Submenu>

@@ -21,16 +21,20 @@ const Home = () => {
       setIsLoading(false);
     });
   }, []);
-  return isLoading ? (
-    <div className="spinner-wrapper">
-      <Spinner />
-    </div>
-  ) : (
-    <Container>
-      <HeroSection />
-      <RandomPost randomCard={randomCard} />
-      <AllPosts />
-    </Container>
+  return (
+    <main>
+      {isLoading ? (
+        <div className="spinner-wrapper">
+          <Spinner />
+        </div>
+      ) : (
+        <Container>
+          <HeroSection />
+          <RandomPost randomCard={randomCard} />
+          <AllPosts />
+        </Container>
+      )}
+    </main>
   );
 };
 

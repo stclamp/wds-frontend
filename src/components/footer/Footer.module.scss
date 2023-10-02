@@ -1,0 +1,19 @@
+@import '@/assets/utils/_variables.scss';
+
+.footer {
+  background-color: $color-body-text;
+  padding: 64px 0 44px 0;
+  margin-top: 72px;
+}
+
+.footer-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.footer-description {
+  font-size: $fs-14;
+  font-weight: $fw-400;
+  margin-top: 20px;
+  color: $color-main-bg;
+}

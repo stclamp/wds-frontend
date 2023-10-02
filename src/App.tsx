@@ -3,6 +3,7 @@ import Header from '@/components/header/Header';
 import Layout from '@/pages/Layout';
 import NotFound from '@/pages/NotFound';
 import Home from '@/pages/Home';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+
+      <Footer />
     </>
   );
 }
