@@ -23,3 +23,19 @@
     font-weight: $fw-400;
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .link {
+    svg {
+      width: 220px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .link {
+    svg {
+      width: 200px;
+    }
+  }
+}

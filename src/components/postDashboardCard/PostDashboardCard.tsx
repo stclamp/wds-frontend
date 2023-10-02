@@ -84,28 +84,31 @@ const PostDashboardCard: React.FC<PostDashboardCardProps> = ({
       ) : (
         <>
           <h3>
-            <span>Title: </span>
+            <span className={styles.title}>Title: </span>
             {post?.title}
           </h3>
-          <p>{post?.text}</p>
           <p>
-            <span>Author: </span>
+            <span className={styles.title}>Text: </span>
+            {post?.text}
+          </p>
+          <p>
+            <span className={styles.title}>Author: </span>
             {post?.author}
           </p>
           <p>
-            <span>Category: </span>
+            <span className={styles.title}>Category: </span>
             {post?.category}
           </p>
           <p>
-            <span>Image link: </span>
+            <span className={styles.title}>Image link: </span>
             {post?.image}
           </p>
           <p>
-            <span>Image alt: </span>
+            <span className={styles.title}>Image alt: </span>
             {post?.image_alt}
           </p>
           <p>
-            <span>Read Time: </span>
+            <span className={styles.title}>Read Time: </span>
             {post?.read_time}
           </p>
           <div className={styles['button-wrapper']}>

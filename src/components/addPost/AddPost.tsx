@@ -11,8 +11,8 @@ interface AddPostProps {
 const AddPost: React.FC<AddPostProps> = ({ createPost }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const handleFormOpen = () => {
-    setIsFormOpen(true);
+  const handleFormOpenToggle = () => {
+    setIsFormOpen((prev) => !prev);
   };
 
   const { register, handleSubmit } = useForm<IPost>();
@@ -23,7 +23,11 @@ const AddPost: React.FC<AddPostProps> = ({ createPost }) => {
 
   return (
     <>
-      <button onClick={handleFormOpen} type="button" className={styles.add}>
+      <button
+        onClick={handleFormOpenToggle}
+        type="button"
+        className={styles.add}
+      >
         +
       </button>
       {isFormOpen && (

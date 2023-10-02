@@ -24,3 +24,9 @@
   -webkit-box-orient: vertical;
   margin-bottom: 16px;
 }
+
+@media screen and (max-width: 992px) {
+  .image {
+    max-height: 158px;
+  }
+}

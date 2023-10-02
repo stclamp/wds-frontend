@@ -9,6 +9,7 @@ import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon';
 import Spinner from '@/components/spinner/Spinner';
 import { IPost } from '@/types';
 import BASE_URL from '@/utils/baseURL';
+import { isMobile } from '@/utils/deviceWidth';
 
 import styles from './AllPosts.module.scss';
 import '@/assets/styles/_global.scss';
@@ -22,7 +23,7 @@ const AllPosts = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const pageLimit = '6';
+  const pageLimit = isMobile ? '3' : '6';
   const currentPage = searchParams.get('page');
 
   const isNextButtonShown =

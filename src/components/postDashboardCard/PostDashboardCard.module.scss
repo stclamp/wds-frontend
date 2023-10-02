@@ -55,3 +55,7 @@ textarea {
   border-color: $color-error;
   @include hover(background, $color-error);
 }
+
+.title {
+  font-weight: $fw-700;
+}

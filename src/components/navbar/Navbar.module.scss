@@ -51,3 +51,48 @@
     transition: width $transition-time;
   }
 }
+
+.burger {
+  border: none;
+  background: none;
+}
+
+@media screen and (max-width: 992px) {
+  .menu {
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0 12px 32px rgba(26, 26, 26, 0.2);
+    padding: 20px 30px;
+    border-radius: 5px;
+    position: absolute;
+    right: 25px;
+    background: $color-main-bg;
+    opacity: 0;
+    visibility: hidden;
+    transition: $transition-time;
+
+    &.open {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .menu-item {
+    &:not(:last-child) {
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+
+    &:hover {
+      &:after {
+        width: 0;
+      }
+    }
+  }
+
+  .active-link {
+    &::after {
+      width: 0;
+    }
+  }
+}

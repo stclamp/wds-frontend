@@ -6,6 +6,7 @@
   padding: 10px;
   @include flex-center;
   border: 1px solid $color-accent;
+  border-radius: 5px;
   color: $color-accent;
   font-size: $fs-30;
   background: none;

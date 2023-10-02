@@ -52,6 +52,7 @@ const PostsDashboardContent = () => {
       {posts &&
         posts.map((post) => (
           <PostDashboardCard
+            key={post.id}
             post={post}
             updatePost={updatePost}
             handleDelete={handleDeletePost}

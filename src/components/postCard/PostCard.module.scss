@@ -56,3 +56,24 @@
   -webkit-box-orient: vertical;
   margin-bottom: 36px;
 }
+
+@media screen and (max-width: 768px) {
+  .card-image {
+    width: 50%;
+  }
+  .card-content {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .card-wrapper {
+    flex-direction: column;
+    max-height: 100%;
+  }
+
+  .card-image,
+  .card-content {
+    width: auto;
+  }
+}

@@ -4,6 +4,7 @@ import ArrowRightIcon from '@/components/icons/ArrowRightIcon';
 import ArrowDownIcon from '@/components/icons/ArrowDownIcon';
 import ArrowUpIcon from '@/components/icons/ArrowUpIcon';
 import { INavItem } from '@/types';
+import { isMobile, isTablet } from '@/utils/deviceWidth';
 
 import styles from './Dropdown.module.scss';
 
@@ -38,7 +39,7 @@ const DropdownComponent: React.FC<DropdownProps> = ({ menu }) => (
           {item.submenu && <ArrowRightIcon />}
           {item.submenu && (
             <Dropdown.Submenu
-              position="right"
+              position={isTablet || isMobile ? 'left' : 'right'}
               className={styles['dropdown-submenu']}
             >
               {item.submenu &&

@@ -3,3 +3,9 @@
   grid-template-columns: 2fr 1fr;
   column-gap: 23px;
 }
+
+@media screen and (max-width: 768px) {
+  .hero-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
