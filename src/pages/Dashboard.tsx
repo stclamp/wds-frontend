@@ -1,9 +1,10 @@
-import Container from '../components/container/Container';
+import Container from '@/components/container/Container';
+import CustomTabs from '@/customTabs/CustomTabs';
 
 const Dashboard = () => (
   <main>
     <Container>
-      <p>dashboard</p>
+      <CustomTabs />
     </Container>
   </main>
 );
