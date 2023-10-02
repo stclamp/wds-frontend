@@ -48,7 +48,9 @@ const AllPosts = () => {
 
   useEffect(() => {
     fetchPosts(pageLimit, currentPage || '1');
-    navigate(`${location.pathname}?page=${currentPage}&limit=${pageLimit}`);
+    navigate(
+      `${location.pathname}?page=${currentPage || 1}&limit=${pageLimit}`,
+    );
   }, []);
 
   const handlePageChange = (e: number) => {

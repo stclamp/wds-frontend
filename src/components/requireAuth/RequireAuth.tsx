@@ -23,7 +23,7 @@ const RequireAuth = () => {
       })
       .catch((error) => {
         setIsAuth(false);
-        toast.error(error);
+        toast.error(error.message);
       })
       .finally(() => setIsLoading(false));
   }, []);
