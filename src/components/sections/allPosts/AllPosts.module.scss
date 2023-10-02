@@ -1,0 +1,27 @@
+@import '@/assets/utils/_variables.scss';
+@import '@/assets/utils/_mixins.scss';
+
+.all-posts-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 88px 24px;
+  margin-top: 72px;
+}
+
+.prev-button,
+.next-button {
+  border: 1px solid $color-accent;
+  border-radius: 50%;
+  background: none;
+  width: 40px;
+  height: 40px;
+  @include flex-center;
+}
+
+.prev-button {
+  margin-right: 10px;
+}
+
+.pagination-wrapper {
+  margin-top: 72px;
+}

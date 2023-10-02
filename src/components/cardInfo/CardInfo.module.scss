@@ -1,0 +1,31 @@
+@import '@/assets/utils/_variables.scss';
+@import '@/assets/utils/_mixins.scss';
+
+.card-info {
+  display: flex;
+  align-items: center;
+}
+
+.card-date,
+.card-author,
+.card-time {
+  color: $color-small-secondary-text;
+  font-size: $fs-12;
+  font-weight: $fw-400;
+  &:not(.card-time, .card-author) {
+    margin-right: 9px;
+  }
+}
+
+.card-author {
+  color: $color-accent;
+  margin-right: 33px;
+}
+
+.card-read-time {
+  @include flex-center;
+
+  svg {
+    margin-right: 4px;
+  }
+}
