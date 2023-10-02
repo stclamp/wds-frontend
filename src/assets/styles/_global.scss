@@ -1,0 +1,87 @@
+@import '@/assets/utils/_variables.scss';
+@import '@/assets/utils/_mixins.scss';
+
+*,
+*::before,
+*::after {
+  font-family: $ff-poppins;
+  color: $color-dark;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.not-found,
+.spinner-wrapper {
+  @include flex-center;
+  margin-top: 100px;
+}
+
+.spinner-wrapper {
+  margin-top: 0;
+}
+
+.pagination {
+  @include flex-center;
+}
+
+.rc-pagination {
+  &-item {
+    color: $color-small-secondary-text;
+    font-size: $fs-14;
+    font-weight: $fw-400;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $color-accent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: $transition-time;
+    @include hover(background, $color-accent);
+    @include hover(color, $color-main-bg);
+    @include flex-center;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    &-active {
+      background-color: $color-accent;
+      color: $color-main-bg;
+    }
+  }
+}
+
+.pagination-jump {
+  font-size: $fs-14;
+  font-weight: $fw-400;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  @include flex-center;
+}
+
+.title {
+  text-align: center;
+}
+
+.react-tabs__tab-list,
+.react-tabs__tab--selected {
+  border-color: $color-accent !important;
+}
+
+.react-tabs__tab-list {
+  width: 100%;
+}

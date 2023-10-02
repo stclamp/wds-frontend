@@ -1,0 +1,61 @@
+@import '@/assets/utils/_variables.scss';
+@import '@/assets/utils/_mixins.scss';
+
+.card {
+  border: 1px solid $color-accent;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.input {
+  width: 100%;
+  border: 2px solid $color-small-secondary-text;
+  border-radius: 4px;
+  margin-bottom: 25px;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: box-shadow $transition-time;
+}
+
+.input:focus {
+  border-color: $color-accent;
+  box-shadow: 0 0 8px 0 $color-accent;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.button-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.button {
+  font-family: $ff-poppins;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 2px solid $color-accent;
+  background: $color-main-bg;
+  cursor: pointer;
+
+  @include hover(background, $color-accent);
+  @include hover(color, $color-main-bg);
+}
+
+.button-delete {
+  border-color: $color-error;
+  @include hover(background, $color-error);
+}
+
+.title {
+  font-weight: $fw-700;
+}

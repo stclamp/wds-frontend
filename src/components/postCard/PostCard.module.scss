@@ -1,0 +1,79 @@
+@import '@/assets/utils/_variables.scss';
+@import '@/assets/utils/_mixins.scss';
+
+.card-wrapper {
+  display: flex;
+  max-height: 400px;
+}
+
+.card-image {
+  width: 66%;
+  min-height: 100%;
+  img {
+    object-fit: cover;
+    height: 100%;
+  }
+}
+
+.card-content {
+  width: 35%;
+  background-color: $color-cards-bg;
+  padding: 32px 24px;
+}
+
+.card-content-short {
+  width: 100%;
+}
+
+.card-category {
+  color: $color-accent;
+  font-size: $fs-14;
+  font-weight: $fw-700;
+}
+
+.card-title {
+  margin-top: 8px;
+  font-size: $fs-22;
+  font-weight: $fw-500;
+  line-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.card-text {
+  margin-top: 8px;
+  font-size: $fs-14;
+  font-weight: $fw-400;
+  line-height: 28px;
+  max-height: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  margin-bottom: 36px;
+}
+
+@media screen and (max-width: 768px) {
+  .card-image {
+    width: 50%;
+  }
+  .card-content {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .card-wrapper {
+    flex-direction: column;
+    max-height: 100%;
+  }
+
+  .card-image,
+  .card-content {
+    width: auto;
+  }
+}

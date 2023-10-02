@@ -1,0 +1,17 @@
+@import '@/assets/utils/_variables.scss';
+@import '@/assets/utils/_mixins.scss';
+
+.logout {
+  border: 1px solid $color-accent;
+  background: none;
+  border-radius: 5px;
+  padding: 10px;
+
+  @include hover(background, $color-accent);
+  @include hover(color, $color-main-bg);
+}
+
+.tabs-wrapper {
+  @include flex-between;
+  align-items: flex-start;
+}
