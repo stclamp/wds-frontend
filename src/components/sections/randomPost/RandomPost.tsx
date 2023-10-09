@@ -4,13 +4,12 @@ import { IPost } from '@/types';
 import styles from './RandomPost.module.scss';
 
 interface RandomPostProps {
-  randomCard: IPost | null;
+  card: IPost | null;
 }
 
-const RandomPost: React.FC<RandomPostProps> = ({ randomCard }) => (
+const RandomPost: React.FC<RandomPostProps> = ({ card }) => (
   <section className={styles['random-post-section']}>
-    <PostCard card={randomCard} />
+    <PostCard card={card} />
   </section>
 );
-
 export default RandomPost;

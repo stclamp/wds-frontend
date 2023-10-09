@@ -18,13 +18,14 @@ const LastPosts = () => {
   }, []);
 
   return (
-    lastPosts && (
+    <div>
+      <h2 className={styles.title}>Our Latest News</h2>
       <div className={styles['last-posts-wrapper']}>
-        {lastPosts.map((post) => (
+        {lastPosts?.map((post) => (
           <LastPost post={post} key={post.id} />
         ))}
       </div>
-    )
+    </div>
   );
 };
 

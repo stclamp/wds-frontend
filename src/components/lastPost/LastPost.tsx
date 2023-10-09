@@ -26,7 +26,6 @@ const LastPost: React.FC<LastPostProps> = ({ post }) => {
     background: `linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%), url(${post?.image}), lightgray`,
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
-    display: 'block',
   };
 
   return (

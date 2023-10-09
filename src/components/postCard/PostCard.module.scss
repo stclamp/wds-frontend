@@ -3,7 +3,7 @@
 
 .card-wrapper {
   display: flex;
-  max-height: 400px;
+  min-height: 100%;
 }
 
 .card-image {
@@ -47,6 +47,7 @@
   margin-top: 8px;
   font-size: $fs-14;
   font-weight: $fw-400;
+  color: $color-body-text;
   line-height: 28px;
   max-height: 400px;
   overflow: hidden;

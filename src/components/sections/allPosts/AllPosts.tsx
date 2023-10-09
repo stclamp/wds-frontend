@@ -15,7 +15,11 @@ import { isMobile } from '@/utils/deviceWidth';
 import styles from './AllPosts.module.scss';
 import '@/assets/styles/_global.scss';
 
-const AllPosts = () => {
+interface AllPostsProps {
+  randomLoaded: boolean;
+}
+
+const AllPosts: React.FC<AllPostsProps> = ({ randomLoaded }) => {
   const [allPosts, setAllPosts] = useState<IPost[] | null>(null);
   const [postsCount, setPostsCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -65,7 +69,7 @@ const AllPosts = () => {
 
   return (
     <section className={styles['all-posts']}>
-      {isLoading ? (
+      {isLoading && randomLoaded ? (
         <div className="spinner-wrapper">
           <Spinner />
         </div>
@@ -86,6 +90,7 @@ const AllPosts = () => {
           jumpNextIcon={<div className="pagination-jump">...</div>}
           jumpPrevIcon={<div className="pagination-jump">...</div>}
           showLessItems={isMobile}
+          showTitle={false}
           prevIcon={
             isPrevButtonShown && (
               <button className={styles['prev-button']} type="button">

@@ -1,8 +1,15 @@
+@import '@/assets/utils/_variables.scss';
+
 .last-posts-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 8px;
+  gap: 15px;
+}
+
+.title {
+  font-size: $fs-30;
+  font-weight: $fw-500;
 }
 
 @media screen and (max-width: 768px) {

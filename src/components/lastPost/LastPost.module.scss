@@ -3,6 +3,9 @@
 .last-post {
   padding: 16px 32px;
   min-height: 115px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .last-post-title {
