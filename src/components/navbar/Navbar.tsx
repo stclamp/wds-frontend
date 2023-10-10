@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import cls from 'classnames';
 import DropdownComponent from '@/components/dropdown/DropdownComponent';
+import CrossIcon from '@/components/icons/CrossIcon';
 import BurgerIcon from '@/components/icons/BurgerIcon';
 import navItems from '@/utils/navItems';
-import { isMobile, isTablet } from '@/utils/deviceWidth';
 
 import styles from './Navbar.module.scss';
 
@@ -13,10 +13,12 @@ const Navbar = () => {
 
   const menuRef = useRef<HTMLUListElement | null>(null);
 
-  const handleToggleMobileMenu = () => {
-    if (isTablet || isMobile) {
-      setIsMobileMenuOpen((prev) => !prev);
-    }
+  const handleOpenMobileMenu = () => {
+    setIsMobileMenuOpen(true);
+  };
+
+  const handleCloseMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   useEffect(() => {
@@ -37,22 +39,35 @@ const Navbar = () => {
 
   return (
     <nav>
-      {(isTablet || isMobile) && ( // burger menu shown on mobile and tablet
+      {!isMobileMenuOpen ? (
         <button
           className={styles.burger}
           type="button"
-          onClick={handleToggleMobileMenu}
+          onClick={handleOpenMobileMenu}
         >
           <BurgerIcon />
         </button>
+      ) : (
+        <button
+          className={styles.burger}
+          type="button"
+          onClick={handleCloseMobileMenu}
+        >
+          <CrossIcon />
+        </button>
       )}
+
       <ul
         className={cls(styles.menu, { [styles.open]: isMobileMenuOpen })}
         ref={menuRef}
       >
         {navItems.map((menu) =>
           !menu.submenu ? (
-            <li className={styles['menu-item']} key={menu.id}>
+            <li
+              className={styles['menu-item']}
+              key={menu.id}
+              onClick={handleCloseMobileMenu}
+            >
               <NavLink
                 to={menu.url}
                 className={({ isActive }) =>
@@ -64,7 +79,10 @@ const Navbar = () => {
             </li>
           ) : (
             <li className={styles['menu-item']} key={menu.id}>
-              <DropdownComponent menu={menu} />
+              <DropdownComponent
+                menu={menu}
+                handleCloseMobileMenu={handleCloseMobileMenu}
+              />
             </li>
           ),
         )}

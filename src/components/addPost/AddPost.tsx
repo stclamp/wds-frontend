@@ -1,26 +1,43 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import cls from 'classnames';
 import Spinner from '@/components/spinner/Spinner';
-import { IPost } from '@/types';
+import { IFormDataPost } from '@/types';
 
 import styles from './AddPost.module.scss';
 import '@/assets/styles/_global.scss';
 
 interface AddPostProps {
-  createPost: (data: IPost, setIsFormOpen: (arg: boolean) => void) => void;
+  createPost: (
+    data: IFormDataPost,
+    setIsFormOpen: (arg: boolean) => void,
+  ) => void;
   isLoading: boolean;
 }
 
 const AddPost: React.FC<AddPostProps> = ({ createPost, isLoading }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isImageUploaded, setIsImageUploaded] = useState(false);
+
+  const { register, handleSubmit } = useForm<IFormDataPost>();
+
+  const uploadedImage = useRef<HTMLImageElement | null>(null);
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    const imageSrc = URL.createObjectURL(file as Blob);
+    if (file && uploadedImage && uploadedImage.current) {
+      uploadedImage.current.src = imageSrc;
+    }
+    setIsImageUploaded(true);
+  };
 
   const handleFormOpenToggle = () => {
     setIsFormOpen((prev) => !prev);
+    setIsImageUploaded(false);
   };
 
-  const { register, handleSubmit } = useForm<IPost>();
-
-  const onSubmit: SubmitHandler<IPost> = (data) => {
+  const onSubmit: SubmitHandler<IFormDataPost> = (data) => {
     createPost(data, setIsFormOpen);
   };
 
@@ -66,12 +83,20 @@ const AddPost: React.FC<AddPostProps> = ({ createPost, isLoading }) => {
                 placeholder="Category"
                 {...register('category', { required: true })}
               />
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="Image"
-                {...register('image', { required: true })}
-              />
+              <div>
+                <input
+                  {...register('image', { required: false })}
+                  type="file"
+                  onChange={handleImageUpload}
+                />
+                <img
+                  ref={uploadedImage}
+                  className={cls(styles.imagePreview, {
+                    [styles.show]: isImageUploaded,
+                  })}
+                  alt="File"
+                />
+              </div>
               <input
                 className={styles.input}
                 type="text"

@@ -45,7 +45,7 @@ export const thirdColumn = [
   },
   {
     title: '(671) 555-0110',
-    url: 'tel:(671) 555-0110',
+    url: 'tel:(671)555-0110',
     icon: 'phone',
   },
 ];

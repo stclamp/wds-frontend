@@ -90,6 +90,11 @@
   padding-top: 12px;
   color: $color-dark;
 
+  svg {
+    width: 10px;
+    height: 10px;
+  }
+
   &:not(:last-child) {
     &:after {
       content: '';

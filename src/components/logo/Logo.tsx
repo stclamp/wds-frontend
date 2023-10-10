@@ -16,7 +16,7 @@ const Logo: React.FC<LogoProps> = ({ isDark = false }) => {
         {/* differnt logo for header and footer */}
         {isDark ? <LogoDarkIcon /> : <LogoIcon />}
       </NavLink>
-      {!isDark && !isMobile && (
+      {!isDark && (
         <div className={styles.tel}>
           <span>Need Help?</span>
           <a href="tel:(514)543-9936">(514) 543-9936</a>

@@ -40,7 +40,7 @@ const FooterColumn: React.FC<FooterColumnProps> = ({
             <NavLink
               className={styles.link}
               to={link.url}
-              target={isAddress ? '_blank' : ''}
+              target={isAddress ? '_blank' : '_self'}
             >
               {link.icon && getIcon(link.icon)}
               {link.title}
