@@ -16,6 +16,24 @@
   width: 40px;
   height: 40px;
   @include flex-center;
+  @include hover(background, $color-accent);
+  @include hover(color, $color-main-bg);
+
+  &:hover {
+    svg {
+      path {
+        fill: $color-main-bg;
+      }
+    }
+  }
+
+  svg {
+    width: 10px;
+    height: 10px;
+    path {
+      transition: $transition-time;
+    }
+  }
 }
 
 .prev-button {

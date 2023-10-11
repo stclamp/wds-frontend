@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import cls from 'classnames';
 import Spinner from '@/components/spinner/Spinner';
-import { IPost } from '@/types';
+import { IFormDataPost, IPost } from '@/types';
+import convertImagePath from '@/helpers/convertImagePath';
 
 import styles from './PostDashboardCard.module.scss';
 import '@/assets/styles/_global.scss';
@@ -11,7 +12,7 @@ interface PostDashboardCardProps {
   post?: IPost;
   updatePost: (
     post: IPost,
-    data: IPost,
+    data: IFormDataPost,
     setIsEdit: (arg: boolean) => void,
   ) => void;
   handleDelete: (id: number) => void;
@@ -26,11 +27,23 @@ const PostDashboardCard: React.FC<PostDashboardCardProps> = ({
 }) => {
   const [isEdit, setIsEdit] = useState(false);
 
+  const uploadedImage = useRef<HTMLImageElement | null>(null);
+
   const handleStartEdit = () => {
     setIsEdit(true);
   };
 
-  const { register, handleSubmit } = useForm<IPost>({
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    const imageSrc = URL.createObjectURL(file as Blob);
+
+    if (file && uploadedImage && uploadedImage.current) {
+      uploadedImage.current.src = imageSrc;
+    }
+  };
+
+  const { register, handleSubmit } = useForm<IFormDataPost>({
     defaultValues: {
       title: post?.title,
       text: post?.text,
@@ -43,9 +56,14 @@ const PostDashboardCard: React.FC<PostDashboardCardProps> = ({
   });
 
   // save updated post
-  const onSubmit: SubmitHandler<IPost> = (data) => {
+  const onSubmit: SubmitHandler<IFormDataPost> = (data) => {
     updatePost(post!, data, setIsEdit);
   };
+
+  let image = '';
+  if (post && post.image) {
+    image = convertImagePath(post.image);
+  }
 
   return (
     <div className={styles.card}>
@@ -78,10 +96,18 @@ const PostDashboardCard: React.FC<PostDashboardCardProps> = ({
                 type="text"
                 {...register('category', { required: true })}
               />
-              <input
-                className={styles.input}
-                type="text"
-                {...register('image', { required: true })}
+              <div>
+                <input
+                  type="file"
+                  {...register('image', { required: false })}
+                  onChange={handleImageUpload}
+                />
+              </div>
+              <img
+                ref={uploadedImage}
+                src={image}
+                className={styles.imagePreview}
+                alt="File"
               />
               <input
                 className={styles.input}
@@ -118,8 +144,8 @@ const PostDashboardCard: React.FC<PostDashboardCardProps> = ({
             {post?.category}
           </p>
           <p>
-            <span className={styles.title}>Image link: </span>
-            {post?.image}
+            <span className={styles.title}>Image: </span>
+            <img className={styles.image} src={image} alt={post?.image_alt} />
           </p>
           <p>
             <span className={styles.title}>Image alt: </span>

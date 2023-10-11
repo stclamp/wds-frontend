@@ -10,11 +10,15 @@ import styles from './Dropdown.module.scss';
 
 interface DropdownProps {
   menu: INavItem;
+  handleCloseMobileMenu: () => void;
 }
 
 // Dropdown used library. If menu item has submenu it will be converted to dropdown
 
-const DropdownComponent: React.FC<DropdownProps> = ({ menu }) => (
+const DropdownComponent: React.FC<DropdownProps> = ({
+  menu,
+  handleCloseMobileMenu,
+}) => (
   <Dropdown
     key={menu.id}
     title={
@@ -37,7 +41,13 @@ const DropdownComponent: React.FC<DropdownProps> = ({ menu }) => (
     {menu.submenu &&
       menu.submenu.map((item) => (
         <Dropdown.Item key={item.id} className={styles['dropdown-item']}>
-          <NavLink to={item.url as string}>{item.title}</NavLink>
+          <NavLink
+            className={styles.link}
+            to={item.url as string}
+            onClick={handleCloseMobileMenu}
+          >
+            {item.title}
+          </NavLink>
           {item.submenu && <ArrowRightIcon />}
           {item.submenu && (
             <Dropdown.Submenu
@@ -50,7 +60,12 @@ const DropdownComponent: React.FC<DropdownProps> = ({ menu }) => (
                     key={sub.id}
                     className={styles['dropdown-item']}
                   >
-                    <NavLink to={sub.url as string}>{sub.title}</NavLink>
+                    <NavLink
+                      to={sub.url as string}
+                      onClick={handleCloseMobileMenu}
+                    >
+                      {sub.title}
+                    </NavLink>
                   </Dropdown.Item>
                 ))}
             </Dropdown.Submenu>

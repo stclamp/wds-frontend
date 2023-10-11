@@ -65,3 +65,33 @@ textarea {
   @include hover(background, $color-accent);
   @include hover(color, $color-main-bg);
 }
+
+.imagePreview {
+  max-width: 50%;
+  display: block;
+  margin: 0 auto;
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
+}
+
+.upload {
+  display: none;
+}
+
+.label {
+  width: 200px;
+  height: 45px;
+  background: $color-accent;
+  color: $color-main-bg;
+  font-size: 15px;
+  text-transform: capitalize;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+}

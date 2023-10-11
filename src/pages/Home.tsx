@@ -12,32 +12,33 @@ import BASE_URL from '@/utils/baseURL';
 import '@/assets/styles/_global.scss';
 
 const Home = () => {
-  const [randomCard, setRandomCard] = useState<IPost | null>(null);
+  const [randomCards, setRandomCards] = useState<IPost[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
     setIsLoading(true);
     axios
       .get(`${BASE_URL}/posts/random`)
       .then(({ data }) => {
-        setRandomCard(data.data);
+        setRandomCards(data.data);
         setIsLoading(false);
       })
       .catch((error) => toast.error(error.message));
   }, []);
   return (
     <main>
-      {isLoading ? (
-        <div className="spinner-wrapper">
-          <Spinner />
-        </div>
-      ) : (
-        <Container>
-          <HeroSection />
-          <RandomPost randomCard={randomCard} />
-          <AllPosts />
-        </Container>
-      )}
+      <Container>
+        {isLoading ? (
+          <div className="spinner-wrapper">
+            <Spinner />
+          </div>
+        ) : (
+          <>
+            <HeroSection card={randomCards && randomCards[0]} />
+            <RandomPost card={randomCards && randomCards[1]} />
+          </>
+        )}
+        <AllPosts randomLoaded={!isLoading} />
+      </Container>
     </main>
   );
 };

@@ -3,7 +3,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import PostDashboardCard from '@/components/postDashboardCard/PostDashboardCard';
 import AddPost from '@/components/addPost/AddPost';
-import { IPost } from '@/types';
+import { IFormDataPost, IPost } from '@/types';
 import BASE_URL from '@/utils/baseURL';
 
 const PostsDashboardContent = () => {
@@ -25,13 +25,23 @@ const PostsDashboardContent = () => {
 
   const updatePost = (
     post: IPost,
-    data: IPost,
+    data: IFormDataPost,
     setIsEdit: (arg: boolean) => void,
   ) => {
     setIsLoading(true);
 
+    const formData = new FormData();
+
+    formData.append('image', data.image[0]);
+    formData.append('title', data.title);
+    formData.append('text', data.text);
+    formData.append('author', data.author);
+    formData.append('category', data.category);
+    formData.append('image_alt', data.image_alt);
+    formData.append('read_time', String(data.read_time));
+
     axios
-      .put(`${BASE_URL}/posts/${post?.id}`, data, { withCredentials: true })
+      .put(`${BASE_URL}/posts/${post?.id}`, formData, { withCredentials: true })
       .then(({ data: dataRes }) => {
         setIsLoading(false);
         fetchAllPosts();
@@ -63,11 +73,24 @@ const PostsDashboardContent = () => {
         });
   };
 
-  const createPost = (data: IPost, setIsFormOpen: (arg: boolean) => void) => {
+  const createPost = (
+    data: IFormDataPost,
+    setIsFormOpen: (arg: boolean) => void,
+  ) => {
     setIsLoading(true);
 
+    const formData = new FormData();
+
+    formData.append('image', data.image[0]);
+    formData.append('title', data.title);
+    formData.append('text', data.text);
+    formData.append('author', data.author);
+    formData.append('category', data.category);
+    formData.append('image_alt', data.image_alt);
+    formData.append('read_time', String(data.read_time));
+
     axios
-      .post(`${BASE_URL}/posts`, data, { withCredentials: true })
+      .post(`${BASE_URL}/posts`, formData, { withCredentials: true })
       .then(({ data: dataRes }) => {
         fetchAllPosts();
         setIsFormOpen(false);
